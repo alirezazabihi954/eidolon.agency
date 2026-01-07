@@ -3,78 +3,83 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Eidolon | Speed-to-Lead Infrastructure</title>
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
+    <title>Eidolon Agency | White-Label Lead Handling</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         theme: {
           extend: {
-            colors: {
-              obsidian: '#030305',
-              charcoal: '#0F1014',
-              cyan: '#00FFFF',
-              silver: '#E2E2E2',
-              slate: '#94A3B8',
-            },
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
-              mono: ['JetBrains Mono', 'monospace'],
+              display: ['Cinzel', 'serif'],
             },
-            animation: {
-              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-              'glitch': 'glitch 1s linear infinite',
+            colors: {
+              'eidolon-void': '#050505',
+              'eidolon-teal': '#18D6C6',
+              'eidolon-violet': '#7c3aed',
+              'eidolon-slate': '#1e293b',
             },
-            keyframes: {
-              glitch: {
-                '2%, 64%': { transform: 'translate(2px,0) skew(0deg)' },
-                '4%, 60%': { transform: 'translate(-2px,0) skew(0deg)' },
-                '62%': { transform: 'translate(0,0) skew(5deg)' },
-              }
+            backgroundImage: {
+              'glass-gradient': 'linear-gradient(145deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%)',
+            },
+            boxShadow: {
+              'glass-inner': 'inset 0 0 20px rgba(255, 255, 255, 0.05)',
+              'neon-glow': '0 0 30px -5px rgba(24, 214, 198, 0.3)',
             }
-          },
-        },
+          }
+        }
       }
     </script>
-    
     <style>
-      /* Custom Scrollbar for Webkit */
+      body {
+        background-color: #050505;
+        color: white;
+        overflow-x: hidden;
+      }
+      
+      /* Noise Texture Overlay */
+      .bg-noise {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 50;
+        opacity: 0.04;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+      }
+
+      /* Custom Scrollbar */
       ::-webkit-scrollbar {
         width: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #030305; 
+        background: #050505;
       }
       ::-webkit-scrollbar-thumb {
-        background: #333; 
+        background: #333;
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #00FFFF; 
+        background: #18D6C6;
       }
     </style>
   <script type="importmap">
 {
   "imports": {
-    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
     "react/": "https://esm.sh/react@^19.2.3/",
     "react": "https://esm.sh/react@^19.2.3",
-    "framer-motion": "https://esm.sh/framer-motion@^12.23.26",
+    "framer-motion": "https://esm.sh/framer-motion@^12.24.10",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "clsx": "https://esm.sh/clsx@^2.1.1",
-    "tailwind-merge": "https://esm.sh/tailwind-merge@^3.4.0"
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0"
   }
 }
 </script>
 <link rel="stylesheet" href="/index.css">
 </head>
-  <body class="bg-obsidian text-silver antialiased selection:bg-cyan/30 selection:text-cyan">
+  <body>
     <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>

@@ -1,81 +1,91 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Play } from 'lucide-react';
+import { ArrowRight, Activity } from 'lucide-react';
+import { TextReveal } from './UI/TextReveal';
 
 export const Hero: React.FC = () => {
   return (
-    <section className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-6 pt-24 md:px-20">
-      {/* Background Gradient Mesh */}
-      <div className="absolute top-1/2 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan/20 blur-[120px] opacity-20" />
+    <section className="relative min-h-[90vh] flex items-center justify-center px-6 lg:px-20 pt-20 overflow-hidden">
       
-      {/* 3D Abstract Orb Representation */}
-      <motion.div 
-        animate={{ 
-          scale: [1, 1.05, 1],
-          opacity: [0.5, 0.8, 0.5]
-        }}
-        transition={{ 
-          duration: 4, 
-          repeat: Infinity, 
-          ease: "easeInOut" 
-        }}
-        className="absolute top-1/2 left-1/2 -z-10 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-tr from-cyan/30 to-purple-500/10 blur-3xl"
-      />
+      {/* Dynamic Grid Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+         <motion.div 
+           initial={{ opacity: 0 }}
+           animate={{ opacity: 0.4 }}
+           transition={{ duration: 2 }}
+           className="absolute inset-0 bg-[linear-gradient(rgba(24,214,198,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(24,214,198,0.03)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]"
+           style={{ transform: 'perspective(500px) rotateX(20deg)' }}
+         />
+         {/* Scanning Light Bar */}
+         <motion.div 
+            className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-eidolon-teal/5 to-transparent"
+            animate={{ top: ['-10%', '110%'] }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+         />
+      </div>
 
-      <div className="relative z-10 flex max-w-4xl flex-col items-center text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-6 inline-flex items-center rounded-full border border-cyan/20 bg-cyan/5 px-4 py-1.5 backdrop-blur-md"
+      <div className="max-w-5xl mx-auto flex flex-col items-center text-center relative z-10 space-y-10">
+        
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, type: "spring" }}
+          className="flex items-center space-x-3 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md shadow-[0_0_20px_-5px_rgba(24,214,198,0.2)]"
         >
-          <span className="flex h-2 w-2 rounded-full bg-cyan shadow-[0_0_10px_cyan] animate-pulse mr-3"></span>
-          <span className="text-xs font-semibold uppercase tracking-widest text-cyan">System Operational</span>
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-eidolon-teal opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-eidolon-teal"></span>
+          </span>
+          <span className="text-[10px] uppercase tracking-[0.2em] text-eidolon-teal font-semibold">White-Label Conversion Ops</span>
         </motion.div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="mb-6 text-4xl font-bold leading-tight tracking-tight text-white md:text-7xl"
-        >
-          Your leads are fine. <br />
-          <span className="bg-gradient-to-r from-slate to-white bg-clip-text text-transparent">
-            Your speed is the bottleneck.
-          </span>
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-8 max-w-2xl text-lg text-slate md:text-xl"
-        >
-          White-label Speed-to-Lead infrastructure. Instant SMS + Rapid Calls. 
-          Done-for-you. 7 days to prove it. 14 days to deploy it.
-        </motion.p>
+        <div className="space-y-6 max-w-4xl">
+          <TextReveal 
+            as="h1" 
+            text="You generate the leads. We stop the leakage after the click." 
+            className="text-4xl md:text-6xl lg:text-7xl font-display font-medium text-white leading-[1.15] drop-shadow-2xl" 
+          />
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
+            className="text-lg md:text-xl text-gray-400 font-light leading-relaxed max-w-2xl mx-auto"
+          >
+            24/7 call & SMS handling, booking-focused qualification, and clean CRM reporting. Done-for-you and completely white-label.
+          </motion.p>
+        </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-col w-full gap-4 md:flex-row md:w-auto"
+           initial={{ opacity: 0, y: 20 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ delay: 1 }}
+           className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto"
         >
-          <a
-            href="#contact"
-            className="group relative flex items-center justify-center overflow-hidden rounded-lg bg-cyan px-8 py-4 font-bold text-obsidian transition-transform active:scale-95"
-          >
-            <span className="relative z-10">REQUEST PROOF SPRINT</span>
-            <div className="absolute inset-0 -z-10 bg-white/50 opacity-0 transition-opacity group-hover:opacity-20"></div>
-          </a>
+          <button className="group relative px-8 py-4 bg-eidolon-teal text-black font-bold uppercase tracking-widest rounded overflow-hidden shadow-[0_0_20px_-5px_#18D6C6] transition-all hover:scale-105">
+            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+            <span className="relative flex items-center justify-center gap-2">
+              Request a Proof Sprint <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </span>
+          </button>
           
-          <a
-            href="#voice"
-            className="flex items-center justify-center rounded-lg border border-white/10 bg-white/5 px-8 py-4 font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/10 active:scale-95"
-          >
-            <Play size={18} className="mr-2" />
-            TEST THE VOICE
-          </a>
+          <button className="group relative px-8 py-4 border border-white/20 text-white uppercase tracking-widest text-sm rounded overflow-hidden transition-all hover:border-eidolon-teal/50 hover:text-eidolon-teal">
+             <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+             <span className="relative flex items-center justify-center gap-2">
+               <Activity className="w-4 h-4" /> Test the Voice
+             </span>
+          </button>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          className="flex items-center gap-4 text-xs text-gray-500 font-mono mt-8"
+        >
+          <span className="w-1.5 h-1.5 bg-gray-700 rounded-full" />
+          7 days to prove it.
+          <span className="w-1.5 h-1.5 bg-gray-700 rounded-full" />
+          14 days to deploy it.
         </motion.div>
       </div>
     </section>

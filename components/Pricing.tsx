@@ -1,126 +1,75 @@
-import React, { useState } from 'react';
-import { Check } from 'lucide-react';
-import { SpotlightCard } from './ui/SpotlightCard';
-import { cn } from '../utils';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { GlassCard } from './UI/GlassCard';
+import { Sparkles, ArrowRight } from 'lucide-react';
 
 export const Pricing: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'sprint' | 'full'>('sprint');
-
-  const Card = ({ type, price, title, features, highlight }: any) => (
-    <SpotlightCard className={cn(
-      "flex flex-col p-8 h-full transition-all duration-300",
-      highlight ? "border-cyan/30 bg-cyan/5" : "border-white/10"
-    )} spotlightColor={highlight ? "rgba(0, 255, 255, 0.2)" : "rgba(255, 255, 255, 0.1)"}>
-      <div className="mb-6">
-        <h3 className="text-lg font-medium text-slate uppercase tracking-widest">{type}</h3>
-        <div className="mt-2 flex items-baseline">
-          <span className="text-4xl font-bold text-white">{price}</span>
-        </div>
-        <h4 className="mt-2 text-xl font-bold text-white">{title}</h4>
-      </div>
-      
-      <ul className="mb-8 space-y-4 flex-1">
-        {features.map((feat: string, i: number) => (
-          <li key={i} className="flex items-start">
-            <Check size={18} className="mr-3 mt-1 text-cyan" />
-            <span className="text-sm text-slate">{feat}</span>
-          </li>
-        ))}
-      </ul>
-
-      <button className={cn(
-        "w-full rounded-lg py-3 font-bold transition-all active:scale-95",
-        highlight ? "bg-cyan text-obsidian hover:bg-cyan/90" : "border border-white/20 bg-white/5 text-white hover:bg-white/10"
-      )}>
-        {highlight ? "START PROOF SPRINT" : "INQUIRE WHOLESALE"}
-      </button>
-    </SpotlightCard>
-  );
-
-  const sprintFeatures = [
-    "7-Day Proof of Concept",
-    "Full SMS & Voice Infrastructure",
-    "CRM Integration (GHL)",
-    "Custom KPI Dashboard",
-    "$500 Credited back on Full Rollout"
-  ];
-
-  const fullFeatures = [
-    "Unlimited Sub-accounts",
-    "White-label Dashboard",
-    "Priority Support SLA",
-    "Custom Voice Training",
-    "Volume Discounts"
-  ];
-
   return (
-    <section id="offer" className="py-24 px-6 md:px-20">
-      <div className="mx-auto max-w-5xl">
-        <h2 className="mb-12 text-center text-3xl font-bold text-white md:text-5xl">Engagement Models</h2>
+    <section id="pricing" className="py-24 px-6 max-w-6xl mx-auto">
+      <div className="text-center mb-20">
+        <h2 className="text-3xl lg:text-5xl font-display text-white mb-4">Agency-Friendly Pricing</h2>
+        <p className="text-gray-400 text-lg font-light">Designed for margin and low risk.</p>
+      </div>
 
-        {/* Mobile Tabs */}
-        <div className="mb-8 flex justify-center md:hidden">
-          <div className="flex rounded-full border border-white/10 bg-charcoal p-1">
-            <button
-              onClick={() => setActiveTab('sprint')}
-              className={cn(
-                "rounded-full px-6 py-2 text-sm font-medium transition-all",
-                activeTab === 'sprint' ? "bg-cyan text-obsidian" : "text-slate"
-              )}
-            >
-              Phase A
+      <div className="grid md:grid-cols-2 gap-10 items-stretch">
+        
+        {/* Proof Sprint - Hero Card */}
+        <motion.div 
+          whileHover={{ scale: 1.02 }}
+          transition={{ type: "spring", stiffness: 300 }}
+          className="relative"
+        >
+           {/* Animated Border Gradient */}
+           <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-eidolon-teal via-transparent to-eidolon-teal opacity-50 blur-sm animate-pulse" />
+           
+          <GlassCard className="p-10 border-eidolon-teal/50 bg-eidolon-teal/5 h-full relative overflow-hidden group">
+            <div className="absolute top-0 right-0 p-4 opacity-50 group-hover:opacity-100 transition-opacity">
+              <Sparkles className="w-6 h-6 text-eidolon-teal" />
+            </div>
+
+            <h3 className="text-2xl font-display text-white mb-2">Proof Sprint</h3>
+            <div className="flex items-baseline gap-2 mb-6">
+              <span className="text-4xl font-bold text-eidolon-teal">$500</span>
+              <span className="text-sm font-normal text-gray-500">deposit</span>
+            </div>
+            
+            <p className="text-sm text-gray-400 mb-8 leading-relaxed">
+              Credited to Month 1 if you proceed. Non-refundable if you cancel (capacity held).
+            </p>
+            
+            <div className="w-full py-4 bg-eidolon-teal/10 border border-eidolon-teal/20 text-center text-eidolon-teal text-sm rounded-lg mb-8 font-bold tracking-wide">
+              $0 Service Fee for 7 Days
+            </div>
+
+            <button className="w-full py-4 bg-eidolon-teal text-black font-bold uppercase tracking-widest rounded hover:bg-white transition-colors flex items-center justify-center gap-2 group-hover:shadow-[0_0_20px_#18D6C6]">
+              Start Sprint <ArrowRight className="w-4 h-4" />
             </button>
-            <button
-              onClick={() => setActiveTab('full')}
-              className={cn(
-                "rounded-full px-6 py-2 text-sm font-medium transition-all",
-                activeTab === 'full' ? "bg-white/10 text-white" : "text-slate"
-              )}
-            >
-              Phase B
-            </button>
-          </div>
-        </div>
+          </GlassCard>
+        </motion.div>
 
-        {/* Content */}
-        <div className="hidden grid-cols-2 gap-8 md:grid">
-          <Card 
-            type="Phase A" 
-            price="$500 Deposit" 
-            title="Proof Sprint" 
-            features={sprintFeatures} 
-            highlight={true} 
-          />
-          <Card 
-            type="Phase B" 
-            price="Custom" 
-            title="Agency Wholesale" 
-            features={fullFeatures} 
-            highlight={false} 
-          />
-        </div>
-
-        {/* Mobile Swipe View */}
-        <div className="md:hidden">
-          {activeTab === 'sprint' ? (
-             <Card 
-             type="Phase A" 
-             price="$500 Deposit" 
-             title="Proof Sprint" 
-             features={sprintFeatures} 
-             highlight={true} 
-           />
-          ) : (
-            <Card 
-            type="Phase B" 
-            price="Custom" 
-            title="Agency Wholesale" 
-            features={fullFeatures} 
-            highlight={false} 
-          />
-          )}
-        </div>
-
+        {/* Wholesale Card */}
+        <motion.div 
+          whileHover={{ scale: 1.02 }}
+          transition={{ type: "spring", stiffness: 300 }}
+        >
+          <GlassCard className="p-10 h-full flex flex-col">
+            <h3 className="text-2xl font-display text-white mb-2">Ongoing Wholesale</h3>
+            <div className="flex items-baseline gap-2 mb-6">
+              <span className="text-4xl font-bold text-white">$450 - $750</span>
+              <span className="text-sm font-normal text-gray-500">/ loc / mo</span>
+            </div>
+            
+            <p className="text-sm text-gray-400 mb-8 leading-relaxed">
+              Plus usage pass-through. Typical retail markup: $1,500 setup, $1,000/mo.
+            </p>
+            
+            <div className="mt-auto">
+              <div className="w-full py-4 bg-white/5 border border-white/10 text-center text-gray-300 text-sm rounded-lg">
+                Volume Discounts Available
+              </div>
+            </div>
+          </GlassCard>
+        </motion.div>
       </div>
     </section>
   );

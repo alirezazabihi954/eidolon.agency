@@ -1,36 +1,38 @@
 import React from 'react';
-import { NoiseOverlay } from './components/ui/NoiseOverlay';
-import { Header } from './components/Header';
+import { Background } from './components/Background';
+import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { VoiceDemo } from './components/VoiceDemo';
-import { ProblemMap } from './components/ProblemMap';
-import { SolutionBento } from './components/SolutionBento';
+import { VoicePreview } from './components/VoicePreview';
+import { Problem } from './components/Problem';
+import { SolutionLayer } from './components/SolutionLayer';
+import { HowItWorks } from './components/HowItWorks';
+import { PartnerOffer } from './components/PartnerOffer';
+import { SolutionsTracks } from './components/SolutionsTracks';
 import { Pricing } from './components/Pricing';
-import { RiskReversal } from './components/RiskReversal';
-import { ContactTerminal } from './components/ContactTerminal';
+import { AboutCompliance } from './components/AboutCompliance';
+import { Footer } from './components/Footer';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="relative min-h-screen w-full bg-obsidian text-silver selection:bg-cyan/30 selection:text-white">
-      <NoiseOverlay />
-      
-      <Header />
-      
-      <main className="relative z-10 flex flex-col gap-0">
+    <div className="relative min-h-screen w-full overflow-hidden text-white selection:bg-eidolon-teal selection:text-eidolon-void font-sans">
+      <Background />
+      <Navbar />
+
+      <main className="relative z-10 flex flex-col">
         <Hero />
-        <VoiceDemo />
-        <ProblemMap />
-        <SolutionBento />
+        <VoicePreview />
+        <Problem />
+        <SolutionLayer />
+        <HowItWorks />
+        <PartnerOffer />
+        <SolutionsTracks />
         <Pricing />
-        <RiskReversal />
-        <ContactTerminal />
+        <AboutCompliance />
       </main>
 
-      <footer className="border-t border-white/5 py-12 text-center text-sm text-slate/40">
-        <p>© 2024 Eidolon Systems. All systems operational.</p>
-      </footer>
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
